@@ -24,9 +24,9 @@ export class EventsRepository {
     });
   }
 
-  // async deleteBlogRepository(data) {
-  //   return await this.blogModel.findByIdAndDelete(data.blogId);
-  // }
+  async deleteEventRepository(data) {
+    return await this.eventModel.findByIdAndDelete(data.eventId);
+  }
 
   async getAllEventsRepository(userId) {
     return await this.eventModel.find({ postedBy: userId });

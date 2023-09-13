@@ -47,11 +47,13 @@ export class EventsController {
   }
 
   // //delete a blog
-  // @UseGuards(AuthGuard)
-  // @Delete('/delete/:id')
-  // async deleteBlogController(@Request() req, @Param('id') id: string) {
-  //   return await this.blogsService.deleteBlogService(req, id);
-  // }
+  @UseGuards(AuthGuard)
+  @Delete('/delete/:id')
+  async deleteBlogController(@Request() req, @Param() event) {
+    console.log('this is the event id', event.id);
+
+    return await this.eventsService.deleteEventService(req, event.id);
+  }
   //get all events of the logged in user
   @UseGuards(AuthGuard)
   @Get('/my')
