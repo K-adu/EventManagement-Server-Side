@@ -19,7 +19,7 @@ export class AuthController {
     const access_token = await this.authService.loginService(body);
     res
       .cookie('access_token', access_token, {
-        httpOnly: true,
+        //httpOnly: true,
         secure: false,
       })
       .send({ status: 'ok' });
@@ -27,14 +27,15 @@ export class AuthController {
   //@UseGuards(AuthGuard)
   @Post('/logout')
   async logOut(@Res({ passthrough: true }) res) {
+    console.log('logout');
     console.log(res.cookie);
     try {
       res
 
         .cookie('access_token', '', {
-          httpOnly: true,
-          secure: true,
-          expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'), // Set expiration to the past
+          // httpOnly: false,
+          secure: false,
+          //expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'), // Set expiration to the past
         })
         .send({ status: 'ok' });
     } catch (e) {

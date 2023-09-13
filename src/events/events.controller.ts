@@ -17,8 +17,8 @@ import { AuthGuard } from 'src/shared/guard/auth.guard';
 
 import { CreateEventsDTO } from './dto/create-events.dto';
 import { EventsService } from './events.service';
-// import { UpdateBlogDTO } from './dto/update-blog.dto';
 import { query } from 'express';
+import { UpdateEventDTO } from './dto/update-events.dto';
 
 @Controller('events')
 // @UseInterceptors(ClassSerializerInterceptor)
@@ -35,16 +35,16 @@ export class EventsController {
     } catch {}
   }
 
-  //update exiting blogs
-  // @UseGuards(AuthGuard)
-  // @Patch('/update/:id')
-  // async updateBlogController(
-  //   @Body() body: UpdateBlogDTO,
-  //   @Request() req,
-  //   @Param('id') id: string,
-  // ) {
-  //   return await this.blogsService.updateBlogService(body, req, id);
-  // }
+  //  update exiting events
+  @UseGuards(AuthGuard)
+  @Patch('/update')
+  async updateBlogController(@Body() body: UpdateEventDTO, @Request() req) {
+    return await this.eventsService.updateEventsService(
+      body,
+      req.body.postedBy,
+      req.body._id,
+    );
+  }
 
   // //delete a blog
   // @UseGuards(AuthGuard)
@@ -52,12 +52,12 @@ export class EventsController {
   // async deleteBlogController(@Request() req, @Param('id') id: string) {
   //   return await this.blogsService.deleteBlogService(req, id);
   // }
-  //get all blog of the logged in user
-  // @UseGuards(AuthGuard)
-  // @Get('/my')
-  // async getAllBlogsController(@Request() req) {
-  //   return this.blogsService.getAllBlogsService(req.user.id);
-  // }
+  //get all events of the logged in user
+  @UseGuards(AuthGuard)
+  @Get('/my')
+  async getAllBlogsController(@Request() req) {
+    return this.eventsService.getAllEventsService(req.user.id);
+  }
 
   // //search matching blogs using keys
   // @Get('/search')

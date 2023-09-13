@@ -11,18 +11,18 @@ export class EventsService {
     return await this.eventsRepository.createEventsRepository(body, req.user);
   }
 
-  // async updateEventsService(body: UpdateBlogDTO, req, id: string) {
-  //   const data = {
-  //     body,
-  //     userId: req.user.id,
-  //     blogId: id,
-  //   };
-  //   const post = await this.eventsRepository.findLoggedInUserPost(data);
-  //   if (!post) {
-  //     return 'the blog doesnot exist or unauthorized to perform the action';
-  //   }
-  //   return await this.blogsRepository.updateBlogRepository(data);
-  // }
+  async updateEventsService(body, req, id: string) {
+    const data = {
+      body,
+      userId: req,
+      eventId: id,
+    };
+    const post = await this.eventsRepository.findLoggedInUserPost(data);
+    if (!post) {
+      return 'the blog doesnot exist or unauthorized to perform the action';
+    }
+    return await this.eventsRepository.updateEventRepository(data);
+  }
 
   // async deleteBlogService(req, id) {
   //   const data = {
@@ -36,9 +36,9 @@ export class EventsService {
   //   return await this.blogsRepository.deleteBlogRepository(data);
   // }
 
-  // async getAllBlogsService(userId) {
-  //   return await this.blogsRepository.getAllBlogsRepository(userId);
-  // }
+  async getAllEventsService(userId) {
+    return await this.eventsRepository.getAllEventsRepository(userId);
+  }
 
   // async getOtherBlogsService() {
   //   return await this.blogsRepository.getOtherBlogsRepository();

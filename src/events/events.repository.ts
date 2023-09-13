@@ -13,24 +13,24 @@ export class EventsRepository {
     console.log(data);
     return await this.eventModel.create(data);
   }
-  // async updateBlogRepository(data) {
-  //   return await this.blogModel.findByIdAndUpdate(data.blogId, data.body);
-  // }
+  async updateEventRepository(data) {
+    return await this.eventModel.findByIdAndUpdate(data.eventId, data.body);
+  }
 
-  // async findLoggedInUserPost(data) {
-  //   return await this.blogModel.findOne({
-  //     _id: data.blogId,
-  //     postedBy: data.userId,
-  //   });
-  // }
+  async findLoggedInUserPost(data) {
+    return await this.eventModel.findOne({
+      _id: data.eventId,
+      postedBy: data.userId,
+    });
+  }
 
   // async deleteBlogRepository(data) {
   //   return await this.blogModel.findByIdAndDelete(data.blogId);
   // }
 
-  // async getAllBlogsRepository(userId) {
-  //   return await this.blogModel.find({ postedBy: userId });
-  // }
+  async getAllEventsRepository(userId) {
+    return await this.eventModel.find({ postedBy: userId });
+  }
 
   // async getOtherBlogsRepository() {
   //   return this.blogModel.aggregate([
