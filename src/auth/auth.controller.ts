@@ -24,24 +24,6 @@ export class AuthController {
       })
       .send({ status: 'ok' });
   }
-  //@UseGuards(AuthGuard)
-  // @Post('/logout')
-  // async logOut(@Res({ passthrough: true }) res) {
-  //   console.log('logout');
-  //   console.log(res);
-  //   try {
-  //     res
-
-  //       .cookie('access_token', '', {
-  //         // httpOnly: false,
-  //         secure: false,
-  //         expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'), // Set expiration to the past
-  //       })
-  //       .send({ status: 'ok' });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
   @Get('/logout')
   async logOut(@Res({ passthrough: true }) res) {
     console.log('logout');
