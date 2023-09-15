@@ -11,6 +11,10 @@ export class EventsService {
     return await this.eventsRepository.createEventsRepository(body, req.user);
   }
 
+  async createDiaryService(body, req) {
+    return await this.eventsRepository.createDiaryRepository(body, req.user);
+  }
+
   async updateEventsService(body, req, id: string) {
     const data = {
       body,

@@ -19,6 +19,7 @@ import { CreateEventsDTO } from './dto/create-events.dto';
 import { EventsService } from './events.service';
 import { query } from 'express';
 import { UpdateEventDTO } from './dto/update-events.dto';
+import { CreateDiaryDTO } from './dto/create-diary.dto';
 
 @Controller('events')
 // @UseInterceptors(ClassSerializerInterceptor)
@@ -27,11 +28,22 @@ export class EventsController {
   // create
   @UseGuards(AuthGuard)
   @Post('/create')
-  async createBlogController(@Body() body: CreateEventsDTO, @Request() req) {
+  async createEventController(@Body() body: CreateEventsDTO, @Request() req) {
     const data = req.body.events;
-    console.log('this is triggered');
+    console.log(data);
     try {
       await this.eventsService.createEventsService(data, req);
+    } catch {}
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('/createDiary')
+  async createDiaryController(@Body() body: CreateDiaryDTO, @Request() req) {
+    const data = req.body;
+    const data1 = data.htmlContent;
+    console.log(data1);
+    try {
+      await this.eventsService.createDiaryService(data1, req);
     } catch {}
   }
 

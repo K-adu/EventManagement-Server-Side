@@ -2,17 +2,28 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Event } from './schema/events.schema';
+import { Diary } from './schema/diary.schema';
 
 @Injectable()
 export class EventsRepository {
   constructor(
     @InjectModel(Event.name) private eventModel: mongoose.Model<Event>,
+    @InjectModel(Diary.name) private diaryModel: mongoose.Model<Diary>,
   ) {}
 
   async createEventsRepository(data, user) {
-    console.log(data);
     return await this.eventModel.create(data);
   }
+
+  async createDiaryRepository(data, user) {
+    const data1 = {
+      description: data,
+      postedBy: user.id,
+    };
+    console.log(data1);
+    return await this.diaryModel.create(data1);
+  }
+
   async updateEventRepository(data) {
     return await this.eventModel.findByIdAndUpdate(data.eventId, data.body);
   }
