@@ -32,40 +32,8 @@ export class EventsRepository {
     return await this.eventModel.find({ postedBy: userId });
   }
 
-  // async getOtherBlogsRepository() {
-  //   return this.blogModel.aggregate([
-  //     {
-  //       $lookup: {
-  //         from: 'users',
-  //         localField: 'postedBy',
-  //         foreignField: '_id',
-  //         as: 'authorData',
-  //       },
-  //     },
-  //     {
-  //       $project: {
-  //         'authorData.role': 0,
-  //         'authorData.email': 0,
-  //       },
-  //     },
-  //     {
-  //       $lookup: {
-  //         from: 'comments',
-  //         localField: 'comments',
-  //         foreignField: '_id',
-  //         as: 'comments',
-  //       },
-  //     },
-  //     {
-  //       $project: {
-  //         'comments.commentOfBlog': 0,
-  //       },
-  //     },
-  //   ]);
-  // }
-
-  // async searchBlogRepository(key) {
-  //   return await this.blogModel.aggregate([
+  // async searchEventsRepository(key) {
+  //   return await this.eventModel.aggregate([
   //     {
   //       $match: {
   //         title: {

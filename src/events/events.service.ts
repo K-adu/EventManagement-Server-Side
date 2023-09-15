@@ -41,12 +41,8 @@ export class EventsService {
     return await this.eventsRepository.getAllEventsRepository(userId);
   }
 
-  // async getOtherBlogsService() {
-  //   return await this.blogsRepository.getOtherBlogsRepository();
-  // }
-
-  // async searchBlogController(query) {
+  // async searchEventController(query) {
   //   const key = query.key;
-  //   return await this.blogsRepository.searchBlogRepository(key);
+  //   return await this.eventRepository.searcheventRepository(key);
   // }
 }

@@ -61,9 +61,9 @@ export class EventsController {
     return this.eventsService.getAllEventsService(req.user.id);
   }
 
-  // //search matching blogs using keys
-  // @Get('/search')
-  // async searchBlogController(@Query() query) {
-  //   return await this.blogsService.searchBlogController(query);
+  // //search matching events using keys
+  // @Get('/events')
+  // async searchEventsController(@Query() query) {
+  //   return await this.eventsService.searchEventsController(query);
   // }
 }
