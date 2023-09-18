@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Event } from './schema/events.schema';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class EventsRepository {
@@ -30,6 +31,10 @@ export class EventsRepository {
 
   async getAllEventsRepository(userId) {
     return await this.eventModel.find({ postedBy: userId });
+  }
+
+  async findAllEventsRepo(query: Query) {
+    return await this.eventModel.find(query);
   }
 
   // async searchEventsRepository(key) {

@@ -17,7 +17,7 @@ import { AuthGuard } from 'src/shared/guard/auth.guard';
 
 import { CreateEventsDTO } from './dto/create-events.dto';
 import { EventsService } from './events.service';
-import { query } from 'express';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 import { UpdateEventDTO } from './dto/update-events.dto';
 
 @Controller('events')
@@ -59,6 +59,12 @@ export class EventsController {
   @Get('/my')
   async getAllBlogsController(@Request() req) {
     return this.eventsService.getAllEventsService(req.user.id);
+  }
+
+  @Get(':/keyword')
+  async getAllEvents(@Query('keyword') keyword: string) {
+    const events = await this.eventsService.findAllEventsService({ keyword });
+    return events;
   }
 
   // //search matching events using keys

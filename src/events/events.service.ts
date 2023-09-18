@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { EventsRepository } from './events.repository';
 // import { UpdateBlogDTO } from './dto/update-blog.dto';
 import { CreateEventsDTO } from './dto/create-events.dto';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class EventsService {
@@ -45,4 +46,16 @@ export class EventsService {
   //   const key = query.key;
   //   return await this.eventRepository.searcheventRepository(key);
   // }
+
+  async findAllEventsService(query: Query) {
+    const { keyword } = query;
+    const filter = {};
+
+    if (keyword) {
+      filter['title'] = { $regex: new RegExp(keyword.toString(), 'i') };
+    }
+
+    const events = await this.eventsRepository.findAllEventsRepo(filter);
+    return events;
+  }
 }

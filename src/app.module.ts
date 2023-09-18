@@ -15,7 +15,9 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     SharedModule,
 
-    MongooseModule.forRoot('mongodb://localhost:27017/eventmanagement'),
+    MongooseModule.forRoot(
+      'mongodb+srv://melinashakya20:melina20@cluster0.cqtd1k5.mongodb.net/events?retryWrites=true&w=majority',
+    ),
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
