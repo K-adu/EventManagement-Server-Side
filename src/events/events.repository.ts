@@ -43,6 +43,13 @@ export class EventsRepository {
     return await this.eventModel.find({ postedBy: userId });
   }
 
+  async getAllDiaryRepository(userId) {
+    return await this.diaryModel.find({ postedBy: userId });
+  }
+
+  async findAllEventsRepo(query) {
+    return await this.eventModel.find(query);
+  }
   // async searchEventsRepository(key) {
   //   return await this.eventModel.aggregate([
   //     {

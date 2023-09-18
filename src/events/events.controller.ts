@@ -73,6 +73,18 @@ export class EventsController {
     return this.eventsService.getAllEventsService(req.user.id);
   }
 
+  @UseGuards(AuthGuard)
+  @Get('/myDiary')
+  async getAllDiaryController(@Request() req) {
+    return this.eventsService.getAllDiaryService(req.user.id);
+  }
+  @Get()
+  async getAllEvents(@Query('keyword') keyword: string) {
+    console.log(keyword);
+    const events = await this.eventsService.findAllEventsService({ keyword });
+    return events;
+  }
+
   // //search matching events using keys
   // @Get('/events')
   // async searchEventsController(@Query() query) {

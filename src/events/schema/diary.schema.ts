@@ -9,6 +9,9 @@ export class Diary extends Document {
   //reference of the user id of the post who posted it
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   postedBy: User;
+
+  @Prop({ default: Date.now }) // Set default value to the current date
+  createdAt: Date;
 }
 
 export const DiarySchema = SchemaFactory.createForClass(Diary);

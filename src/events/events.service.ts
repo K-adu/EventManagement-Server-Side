@@ -45,6 +45,20 @@ export class EventsService {
     return await this.eventsRepository.getAllEventsRepository(userId);
   }
 
+  async getAllDiaryService(userId) {
+    return await this.eventsRepository.getAllDiaryRepository(userId);
+  }
+  async findAllEventsService(query) {
+    const { keyword } = query;
+    const filter = {};
+
+    if (keyword) {
+      filter['title'] = { $regex: new RegExp(keyword.toString(), 'i') };
+    }
+
+    const events = await this.eventsRepository.findAllEventsRepo(filter);
+    return events;
+  }
   // async searchEventController(query) {
   //   const key = query.key;
   //   return await this.eventRepository.searcheventRepository(key);
